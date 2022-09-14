@@ -8,6 +8,7 @@ import (
 
 func main() {
 	router := gin.Default()
+	router.Use(cors.Default())
 	public := router.Group("/")
 	routes.PublicRoutes(public)
 	router.Run()
