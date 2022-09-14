@@ -10,5 +10,5 @@ func main() {
 	router := gin.Default()
 	public := router.Group("/")
 	routes.PublicRoutes(public)
-	router.Run("localhost:4000")
+	router.Run()
 }
