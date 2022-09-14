@@ -19,11 +19,11 @@ const (
 )
 
 var Choices = []model.Choice{
-	{ID: ROCK, Name: "rock"},
-	{ID: PAPER, Name: "paper"},
-	{ID: SCISSORS, Name: "scissors"},
-	{ID: LIZARD, Name: "lizard"},
-	{ID: SPOCK, Name: "spock"},
+	{ID: ROCK, Name: "Rock"},
+	{ID: PAPER, Name: "Paper"},
+	{ID: SCISSORS, Name: "Scissors"},
+	{ID: LIZARD, Name: "Lizard"},
+	{ID: SPOCK, Name: "Spock"},
 }
 var Winning = map[int][2]int{
 	ROCK:     {SCISSORS, LIZARD},
