@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"gopkg.in/validator.v2"
 
 	data "rock-paper/internal/data"
 	model "rock-paper/internal/model"
@@ -33,7 +34,15 @@ func Play(c *gin.Context) {
 	computerChoice := GetComputerChoice()
 
 	if err := c.BindJSON(&player); err != nil {
-		return
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+	}
+
+	if err := validator.Validate(player); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
 	}
 	playwin := PlayRound(c, 1, player.Player, computerChoice.ID)
 	c.JSON(http.StatusOK, playwin)
@@ -44,7 +53,15 @@ func Multiplayer(c *gin.Context) {
 	var player model.Multiplayer
 
 	if err := c.BindJSON(&player); err != nil {
-		return
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+	}
+
+	if err := validator.Validate(player); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
 	}
 	playRockPaper := PlayRound(c, 2, player.Player1, player.Player2)
 	c.JSON(http.StatusOK, playRockPaper)

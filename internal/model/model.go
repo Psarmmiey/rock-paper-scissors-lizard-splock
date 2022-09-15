@@ -32,10 +32,10 @@ type MultiPlayerGameResult struct {
 }
 
 type Player struct {
-	Player int `json:"player"`
+	Player int `json:"player" validate:"required,min=1,max=5"`
 }
 
 type Multiplayer struct {
-	Player1 int `json:"player1"`
-	Player2 int `json:"player2"`
+	Player1 int `json:"player1" validate:"required,min=1,max=5"`
+	Player2 int `json:"player2" validate:"required,min=1,max=5"`
 }

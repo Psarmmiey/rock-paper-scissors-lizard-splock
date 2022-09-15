@@ -9,6 +9,7 @@ require (
 	github.com/gorilla/securecookie v1.1.1 // indirect
 	github.com/gorilla/sessions v1.2.1 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
+	gopkg.in/validator.v2 v2.0.1 // indirect
 )
 
 require (
