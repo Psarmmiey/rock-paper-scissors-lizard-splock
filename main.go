@@ -19,7 +19,7 @@ func main() {
 
 	public := router.Group("/")
 	routes.PublicRoutes(public)
-	router.Run(":4000")
+	router.Run()
 
 	logger.LogDebug("-----Application started-----")
 }
