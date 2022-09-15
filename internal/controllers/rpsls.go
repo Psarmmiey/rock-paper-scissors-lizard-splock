@@ -34,9 +34,7 @@ func Play(c *gin.Context) {
 	computerChoice := GetComputerChoice()
 
 	if err := c.BindJSON(&player); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": err.Error(),
-		})
+		return
 	}
 
 	if err := validator.Validate(player); err != nil {
@@ -53,9 +51,7 @@ func Multiplayer(c *gin.Context) {
 	var player model.Multiplayer
 
 	if err := c.BindJSON(&player); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": err.Error(),
-		})
+		return
 	}
 
 	if err := validator.Validate(player); err != nil {
