@@ -106,8 +106,10 @@ You can also run the Docker image or the Makefile.
 {
     "message": "Game reset successfully"
 }
+  ```
 
 
 
 ## Credits
+
 Sam Kass & Karen Bryla http://www.samkass.com/theories/RPSSL.html
