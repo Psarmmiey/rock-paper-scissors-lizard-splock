@@ -1,9 +1,7 @@
 package controllers
 
 import (
-	"math/rand"
 	"net/http"
-	"time"
 
 	"github.com/gin-gonic/gin"
 
@@ -30,14 +28,6 @@ func GetSingleChoice(c *gin.Context) {
 	c.IndentedJSON(http.StatusNotFound, gin.H{"error": "Choice not found"})
 }
 
-func randomNum() (int, error) {
-	rand.Seed(time.Now().UnixNano())
-	min := 1
-	max := 5
-	randomNumber := rand.Intn(max-min+1) + min
-	return randomNumber, nil
-}
-
 func Play(c *gin.Context) {
 	var player model.Player
 	computerChoice := GetComputerChoice()
@@ -51,13 +41,36 @@ func Play(c *gin.Context) {
 }
 
 func Multiplayer(c *gin.Context) {
-	/* var player model.Multiplayer
+	var player model.Multiplayer
 
 	if err := c.BindJSON(&player); err != nil {
 		return
-	} */
-	// Randomize player 1 and player 2
-	playRockPaper := PlayRound(c, 2, GetComputerChoice().ID, GetComputerChoice().ID)
+	}
+	playRockPaper := PlayRound(c, 2, player.Player1, player.Player2)
 	c.JSON(http.StatusOK, playRockPaper)
 
+}
+
+func singlePlayerGameResult(c *gin.Context, player1 int, player2 int, result string, player1Score int, player2Score int, totalRounds int, message string) model.SinglePlayerGameResult {
+	return model.SinglePlayerGameResult{
+		Player:        player1,
+		Computer:      player2,
+		Result:        result,
+		PlayerScore:   player1Score,
+		ComputerScore: player2Score,
+		TotalRounds:   totalRounds,
+		Message:       message,
+	}
+}
+
+func multiplayerPlayerGameResult(c *gin.Context, player1 int, player2 int, result string, player1Score int, player2Score int, totalRounds int, message string) model.MultiPlayerGameResult {
+	return model.MultiPlayerGameResult{
+		Player1:      player1,
+		Player2:      player2,
+		Result:       result,
+		Player1Score: player1Score,
+		Player2Score: player2Score,
+		TotalRounds:  totalRounds,
+		Message:      message,
+	}
 }
