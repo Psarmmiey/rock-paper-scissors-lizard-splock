@@ -43,7 +43,6 @@ You can also run the Docker image or the Makefile.
         "id": 1,
         "name": "Rock"
     },
-    ...
     {
         "id": 5,
         "name": "Spock"
@@ -86,9 +85,12 @@ You can also run the Docker image or the Makefile.
     "player1":2,
     "player2":5
 }
+```
+
+
 ```json
 {
-     "player1": 2,
+    "player1": 2,
     "player2": 3,
     "results": "Player 2 wins",
     "player1_score": 0,
@@ -104,7 +106,7 @@ You can also run the Docker image or the Makefile.
 {
     "message": "Game reset successfully"
 }
-```
+
 
 
 ## Credits
