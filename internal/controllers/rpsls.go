@@ -40,11 +40,24 @@ func randomNum() (int, error) {
 
 func Play(c *gin.Context) {
 	var player model.Player
+	computerChoice := GetComputerChoice()
 
 	if err := c.BindJSON(&player); err != nil {
 		return
 	}
-	playwin := PlayRound(player.Player)
+	playwin := PlayRound(c, 1, player.Player, computerChoice.ID)
 	c.JSON(http.StatusOK, playwin)
+
+}
+
+func Multiplayer(c *gin.Context) {
+	/* var player model.Multiplayer
+
+	if err := c.BindJSON(&player); err != nil {
+		return
+	} */
+	// Randomize player 1 and player 2
+	playRockPaper := PlayRound(c, 2, GetComputerChoice().ID, GetComputerChoice().ID)
+	c.JSON(http.StatusOK, playRockPaper)
 
 }
