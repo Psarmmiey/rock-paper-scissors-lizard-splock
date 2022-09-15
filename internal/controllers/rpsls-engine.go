@@ -5,6 +5,7 @@ import (
 	data "rock-paper/internal/data"
 	logger "rock-paper/internal/log"
 	model "rock-paper/internal/model"
+	"strconv"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -42,7 +43,7 @@ func PlayRound(c *gin.Context, mode int, player1 int, player2 int) interface{} {
 	playerScore := session.Get("playerScore")
 	computerScore := session.Get("computerScore")
 	totalRounds := session.Get("totalRounds")
-	logger.LogInfo("----Game Round: " + totalRounds.(string))
+	logger.LogInfo("----Game Round: " + strconv.Itoa(totalRounds.(int)) + "----")
 	message := "Game in progress"
 
 	if playerScore == nil || computerScore == nil || totalRounds == nil {
@@ -52,10 +53,10 @@ func PlayRound(c *gin.Context, mode int, player1 int, player2 int) interface{} {
 	}
 	if totalRounds.(int) >= 10 {
 		message = ResetScoreBoard(c)
-		logger.LogInfo("----Game Round: " + totalRounds.(string) + "----" + message)
+		logger.LogInfo("----Game Round: " + strconv.Itoa(totalRounds.(int)) + "----" + message)
 	} else if totalRounds.(int) == 9 {
 		message = "Final round"
-		logger.LogInfo("----Game Round: " + totalRounds.(string) + "----" + message)
+		logger.LogInfo("----Game Round: " + strconv.Itoa(totalRounds.(int)) + "----" + message)
 	}
 	if mode == 1 {
 		gameOutcome = singlePlayerGameResult(c,
@@ -119,6 +120,7 @@ func ResetScoreBoard(c *gin.Context) string {
 
 func ResetGameManually(c *gin.Context) {
 	ResetScoreBoard(c)
+	logger.LogInfo("Game reset manually")
 	c.JSON(http.StatusOK, gin.H{
 		"message": "Game reset successfully",
 	})
