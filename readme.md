@@ -2,8 +2,6 @@
 
 This is a simple implementation of the game Rock Paper Scissors Lizard Spock in Go.
 
-
-
 Run locally
    1. Clone the files.
    2. Open the console, stand on the root folder of this project and type: go run main.go
@@ -25,14 +23,14 @@ You can also run the Docker image or the Makefile.
   - Spock vaporizes Rock
   - Rock crushes Scissors
 
-  *Each game play is reset automatically after 10 rounds.*
+  *Each game play scoreboard is reset automatically after 10 rounds.*
 
 
 
 ## Game Modes
 
    1. Player vs Computer
-   2. Multiplayer
+   2. Multiplayer (2 players maximum)
 
 ## Endpoints
 
